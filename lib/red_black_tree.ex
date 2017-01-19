@@ -213,6 +213,18 @@ defmodule RedBlackTree do
     end) |> Enum.reverse
   end
 
+  def bottom(%RedBlackTree{root: root}) do
+    do_bottom(root, nil)
+  end
+
+  defp do_bottom(nil, acc) do
+    acc
+  end
+
+  defp do_bottom(%Node{left: left, key: key, value: value}, acc) do
+    do_bottom(left, {key, value})
+  end
+
   ## Helpers
 
   defp make_node_black(%Node{}=node) do
